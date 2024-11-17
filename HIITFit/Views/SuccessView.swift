@@ -32,34 +32,29 @@
 
 import SwiftUI
 
-struct WelcomeView: View {
+struct SuccessView: View {
     var body: some View {
 			ZStack {
-				VStack{
-					HStack (alignment: .bottom) {
-						VStack (alignment: .leading){
-							Text("Get fit")
-								.font(.largeTitle)
-							Text("with high intensity interval training")
-								.font(.headline)
-						}
-						Image("step-up").resizedToFill(width: 240, height: 240).clipShape(/*@START_MENU_TOKEN@*/Circle()/*@END_MENU_TOKEN@*/)
+				VStack (alignment: .center){
+					Image(systemName: "hand.raised.fill")
+						.resizedToFill(width: 75, height: 75)
+						.foregroundColor(.purple)
+					Text("High Five!").font(.largeTitle).bold()
+					VStack {
+						Text("Good job completing all four exercises!")
+						Text("Remember, tomorrow's another day.")
+						Text("So eat well and get some rest.")
+					}.font(.headline).foregroundColor(.gray)
 					}
-					Button(action: {}) {
-						Text("Get Started")
-						Image(systemName: "arrow.right.circle")
-					}.font(.title2).padding().background(RoundedRectangle(cornerRadius: 20).stroke(Color.gray, lineWidth: 2))
-				}
 				VStack {
-					HeaderView(titleText: "Welcome")
 					Spacer()
-					Button("History") {}
-						.padding(.bottom)
+					Button("Continue") { }
+						.padding()
 				}
 			}
     }
 }
 
 #Preview {
-    WelcomeView()
+    SuccessView()
 }

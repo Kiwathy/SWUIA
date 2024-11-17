@@ -32,34 +32,35 @@
 
 import SwiftUI
 
-struct WelcomeView: View {
-    var body: some View {
-			ZStack {
-				VStack{
-					HStack (alignment: .bottom) {
-						VStack (alignment: .leading){
-							Text("Get fit")
-								.font(.largeTitle)
-							Text("with high intensity interval training")
-								.font(.headline)
-						}
-						Image("step-up").resizedToFill(width: 240, height: 240).clipShape(/*@START_MENU_TOKEN@*/Circle()/*@END_MENU_TOKEN@*/)
+struct HistoryView: View {
+	let history = HistoryStore()
+	var body: some View {
+		ZStack (alignment: .topTrailing){
+			Button(action: {}) {
+				Image(systemName: "xmark.circle")
+			}.font(.title)
+				.padding(.trailing)
+			VStack {
+				Text("History")
+					.font(.title)
+					.padding()
+				Form {
+					ForEach(history.exerciseDays) { day in
+						Section(
+							header:
+								Text(day.date.formatted(as: "MMM d"))
+								.font(.headline)){
+									ForEach(day.exercises, id: \.self) { exercise in
+										Text(exercise)
+									}
+								}
 					}
-					Button(action: {}) {
-						Text("Get Started")
-						Image(systemName: "arrow.right.circle")
-					}.font(.title2).padding().background(RoundedRectangle(cornerRadius: 20).stroke(Color.gray, lineWidth: 2))
-				}
-				VStack {
-					HeaderView(titleText: "Welcome")
-					Spacer()
-					Button("History") {}
-						.padding(.bottom)
 				}
 			}
-    }
+		}
+	}
 }
 
 #Preview {
-    WelcomeView()
+    HistoryView()
 }
